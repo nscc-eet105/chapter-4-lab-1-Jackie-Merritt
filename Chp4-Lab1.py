@@ -2,38 +2,42 @@
 
 #Initial Inputs
 def main():
-    print("Temperature Converter")
+    print('Temperature Converter')
     print()
-    t = input("What is the current Temp? ")
-    
-    o = c_or_f()
-    validation(o)
-    math(o, t)
-    
+    #Attaches user input to variable 't'
+    t = float(input('What is the current Temp? '))
 
-#Validation check
-def c_or_f():
-    print()
-    o = input("Is the current Temperature you just entered in (c)elsius or (f)ahrenheit? ")
-    return o
+    #Assigns valid_data to false and repeats if valid_data is considered False still at later point.
+    valid_data = False
+    while valid_data == False:
 
-def validation(o):
-    
-    if o == "c" or o == "f":
-        return
+        #Assigns user input to variable 'o'
+        o = input('Is the current Temperature you just entered in (c)elsius or (f)ahrenheit? ')
 
-    else:
-        print("Invalid response, please input c or f")
-        c_or_f()
+        if o.lower() == 'c' or o.lower() == 'f':
+            #Valid data is considered True and so question does not repeat and Python moves on
+            valid_data = True
+
+        #Prints error message when incorrect and repeats question
+        else:
+            print('Invalid response, please input c or f')
+        
+    #Determines if o = celsius or fahrenheit and uses the correlating function to convert it to opposite temperature
+    if o == 'c':
+        c = celsius(t)
+        print(f'The current temperature is {t} celsius, this temperature in fahrenheit is {c:.2f}')
+    if o == 'f':
+        fahrenheit(t)
 
 
+#Translates celsisus to fahrenheit
+def celsius(t):
+    return float(t * 1.8 + 32)
 
-def math(o, t):
-    if o == "c":
-        i = float(int(t) * 1.8 + 32)
-        print(f'The current temperature is {t} celsius, this temperature in fahrenheit is {i:.2f}')
-    if o == "f":
-        i = float((int(t) - 32) * 5/9)
-        print(f'The current temperature is {t} fahrenheit, this temperature in celsius is {i:.2f}')
+#Translates fahrenheit to celsius
+def fahrenheit(t):
+    i = float((t - 32) * 5/9)
+    print(f'The current temperature is {t} fahrenheit, this temperature in celsius is {i:.2f}')
 
-main()
+if __name__ == '__main__':
+    main()
