@@ -2,32 +2,29 @@
 
 #Initial Inputs
 def main():
-    start()
-
-
-def start():
     print("Temperature Converter")
     print()
     t = input("What is the current Temp? ")
-    inputs(t)
+    
+    o = c_or_f()
+    validation(o)
+    math(o, t)
+    
 
-
-
-def inputs(t):
+#Validation check
+def c_or_f():
     print()
     o = input("Is the current Temperature you just entered in (c)elsius or (f)ahrenheit? ")
+    return o
 
-    validation(str(o), t)
-
-
-def validation(o, t):
+def validation(o):
     
     if o == "c" or o == "f":
-        math(o, t)
+        return
 
     else:
         print("Invalid response, please input c or f")
-        inputs(t)
+        c_or_f()
 
 
 
